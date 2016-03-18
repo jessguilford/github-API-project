@@ -13,8 +13,13 @@ function Repo(name, description) {
 // Method to print a Repo to document
 Repo.prototype.render = function () {
   var output = document.getElementById('output');
-
-  output.insertAdjacentHTML('afterbegin', '<li><ul class="repo-name">' + '<li><strong>' + this.name + '</strong></li>' + '<li>' + this.description + '</li>' + '</ul></li>');
+  var renderName = this.name;
+  if (this.description === "") {
+    var renderDesc = "Description not available";
+  } else {
+    var renderDesc = this.description;
+  }
+  output.insertAdjacentHTML('afterbegin', '<li><ul class="repo-name">' + '<li><strong>' + renderName + '</strong></li>' + '<li>' + renderDesc + '</li>' + '</ul></li>');
 };
 
 exports.getRepos = function(input) {
