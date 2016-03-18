@@ -5,28 +5,43 @@ exports.apiKey = "05666ec5e7c6afa1db533ecb8e369a718bc00b53";
 var apiKey = require("./../.env").apiKey;
 
 exports.getRepos = function(input) {
+  var userArray = [input];
+  console.log(userArray);
   $.get('https://api.github.com/users/' + input + '?access_token=' + apiKey).then(function(response) {
-    var userName = response.name;
-    console.log(userName);
+    userArray.push(response);
   }).fail(function(error) {
     console.log(error.responseJSON.message);
   });
+
+  for(var i = 0; i < userArray.length; i++) {
+    console.log(userArray[i]);
+  }
 };
+
+// exports.printRepos = function(userArray) {
+//   for(var i=1; i < userArray.length; i++) {
+//     console.log(userArray[i]);
+//   }
+// };
+
 //
 // exports.renderInfo = function(response) {
 //   var userName = response.name;
 //   console.log(userName);
 // }
+exports.userArray = userArray;
 
 },{"./../.env":1}],3:[function(require,module,exports){
 var getRepos = require("./../js/gh.js").getRepos;
-var renderInfo = require("./../js/gh.js").renderInfo;
+// var printRepos = require("./../js/gh.js").printRepos;
+var userArray = require("./../js/gh.js").userArray;
 
 $(document).ready(function() {
   var input = "daneden";
   console.log("basic setup is working");
   $("#search-submit").click(function() {
     getRepos(input);
+    // printRepos();
   });
 });
 
