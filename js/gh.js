@@ -6,9 +6,12 @@ exports.getRepos = function(input) {
     repoArray.push(response);
 
     for(var i = 0; i < repoArray.length; i++) {
-      console.log(repoArray[i]);
       for(var j = 0; j < repoArray[i].length; j++) {
-        console.log(repoArray[i][j].name);
+        var output = document.getElementById('output');
+        var repoName = repoArray[i][j].name;
+        var repoDescription = repoArray[i][j].description;
+        // output.innerHTML = output.innerHTML + '<li><ul class="repo-name">' + repoArray[i][j].name + '</ul></li>';
+        output.insertAdjacentHTML('afterbegin', '<li><ul class="repo-name">' + '<li>' + repoName + '</li>' + '<li>' + repoDescription + '</li>' + '</ul></li>')
       }
     }
 
@@ -17,9 +20,6 @@ exports.getRepos = function(input) {
   });
 };
 
-
-// var output = document.getElementById('output');
-// output.innerHTML = output.innerHTML + "<li>" + userArray[i][j].name + "</li>";
 
 // exports.printRepos = function(userArray) {
 //   for(var i=1; i < userArray.length; i++) {
