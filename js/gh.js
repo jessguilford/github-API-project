@@ -36,5 +36,7 @@ exports.getRepos = function(input) {
 
   }).fail(function(error) {
     console.log(error.responseJSON.message);
+    return false;
   });
+  return true;
 };
