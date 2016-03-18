@@ -5,17 +5,18 @@ exports.apiKey = "05666ec5e7c6afa1db533ecb8e369a718bc00b53";
 var apiKey = require("./../.env").apiKey;
 
 exports.getRepos = function(input) {
-  var userArray = [input];
-  console.log(userArray);
+  var userArray = [];
   $.get('https://api.github.com/users/' + input + '?access_token=' + apiKey).then(function(response) {
     userArray.push(response);
+
+    for(var i = 0; i < userArray.length; i++) {
+      console.log(userArray[i]);
+      var output = document.getElementById('output');
+      output.innerHTML = "<li>" + userArray[i].name + "</li>";
+    }
   }).fail(function(error) {
     console.log(error.responseJSON.message);
   });
-
-  for(var i = 0; i < userArray.length; i++) {
-    console.log(userArray[i]);
-  }
 };
 
 // exports.printRepos = function(userArray) {
@@ -29,7 +30,7 @@ exports.getRepos = function(input) {
 //   var userName = response.name;
 //   console.log(userName);
 // }
-exports.userArray = userArray;
+// exports.userArray = userArray;
 
 },{"./../.env":1}],3:[function(require,module,exports){
 var getRepos = require("./../js/gh.js").getRepos;
