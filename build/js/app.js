@@ -4,7 +4,7 @@ exports.apiKey = "05666ec5e7c6afa1db533ecb8e369a718bc00b53";
 },{}],2:[function(require,module,exports){
 var apiKey = require("./../.env").apiKey;
 
-// Create object to hold simplified repository info
+// Create new constructor to hold simplified repository info
 function Repo(name, description) {
   this.name = name;
   this.description = description;
@@ -44,11 +44,11 @@ var getRepos = require("./../js/gh.js").getRepos;
 var userArray = require("./../js/gh.js").userArray;
 
 $(document).ready(function() {
-  var input = "daneden";
   console.log("basic setup is working");
   $("#search-submit").click(function() {
+    var input = $("#search-input").val();
     getRepos(input);
-    // printRepos();
+    console.log(input);
   });
 });
 

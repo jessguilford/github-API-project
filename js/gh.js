@@ -1,6 +1,6 @@
 var apiKey = require("./../.env").apiKey;
 
-// Create object to hold simplified repository info
+// Create new constructor to hold simplified repository info
 function Repo(name, description) {
   this.name = name;
   this.description = description;
