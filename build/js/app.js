@@ -4,6 +4,19 @@ exports.apiKey = "05666ec5e7c6afa1db533ecb8e369a718bc00b53";
 },{}],2:[function(require,module,exports){
 var apiKey = require("./../.env").apiKey;
 
+// Create object to hold simplified repository info
+function Repo(name, description) {
+  this.name = name;
+  this.description = description;
+}
+
+// Method to print a Repo to document
+Repo.prototype.render = function () {
+  var output = document.getElementById('output');
+
+  output.insertAdjacentHTML('afterbegin', '<li><ul class="repo-name">' + '<li><strong>' + this.name + '</strong></li>' + '<li>' + this.description + '</li>' + '</ul></li>');
+};
+
 exports.getRepos = function(input) {
   var repoArray = [];
   $.get('https://api.github.com/users/' + input + "/repos" + '?access_token=' + apiKey).then(function(response) {
@@ -11,11 +24,12 @@ exports.getRepos = function(input) {
 
     for(var i = 0; i < repoArray.length; i++) {
       for(var j = 0; j < repoArray[i].length; j++) {
-        var output = document.getElementById('output');
+        // Loop through the response from the API, and convert to new simplified Repo object
         var repoName = repoArray[i][j].name;
         var repoDescription = repoArray[i][j].description;
-        // output.innerHTML = output.innerHTML + '<li><ul class="repo-name">' + repoArray[i][j].name + '</ul></li>';
-        output.insertAdjacentHTML('afterbegin', '<li><ul class="repo-name">' + '<li>' + repoName + '</li>' + '<li>' + repoDescription + '</li>' + '</ul></li>')
+        var repoItem = new Repo(repoName, repoDescription);
+        repoItem.render();
+        // Run render method on each new Repo object
       }
     }
 
@@ -23,20 +37,6 @@ exports.getRepos = function(input) {
     console.log(error.responseJSON.message);
   });
 };
-
-
-// exports.printRepos = function(userArray) {
-//   for(var i=1; i < userArray.length; i++) {
-//     console.log(userArray[i]);
-//   }
-// };
-
-//
-// exports.renderInfo = function(response) {
-//   var userName = response.name;
-//   console.log(userName);
-// }
-// exports.userArray = userArray;
 
 },{"./../.env":1}],3:[function(require,module,exports){
 var getRepos = require("./../js/gh.js").getRepos;
