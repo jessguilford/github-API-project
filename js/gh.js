@@ -1,21 +1,27 @@
 var apiKey = require("./../.env").apiKey;
 
 // Create new constructor to hold simplified repository info
-function Repo(name, description) {
+function Repo(name, description, url, watchers) {
   this.name = name;
   this.description = description;
+  this.url = url;
+  this.watchers = watchers;
 }
 
 // Method to print a Repo to document
 Repo.prototype.render = function () {
   var output = document.getElementById('output');
   var renderName = this.name;
+  var renderUrl = '<a href="' + this.url + '"> View on Github </a>';
+  var renderWatchers = (this.watchers).toString();
   if (this.description === "") {
     var renderDesc = "Description not available";
   } else {
     var renderDesc = this.description;
   }
-  output.insertAdjacentHTML('afterbegin', '<li><ul class="repo-name">' + '<li><strong>' + renderName + '</strong></li>' + '<li>' + renderDesc + '</li>' + '</ul></li>');
+
+  output.insertAdjacentHTML('afterbegin', '<li><ul class="repo-item">' + '<li class="repo-name">' + renderName + '</li>' + '<li class="repo-info">' + renderDesc + '</li>' + '<li class="repo-url">' + renderUrl + '</li>' + '<li class="repo-watchers">' + renderWatchers + '</li>' + '</ul></li>');
+  console.log(renderUrl);
 };
 
 exports.getRepos = function(input) {
@@ -28,7 +34,10 @@ exports.getRepos = function(input) {
         // Loop through the response from the API, and convert to new simplified Repo object
         var repoName = repoArray[i][j].name;
         var repoDescription = repoArray[i][j].description;
-        var repoItem = new Repo(repoName, repoDescription);
+        var repoURL = repoArray[i][j].url;
+        var repoWatchers = repoArray[i][j].watchers_count;
+        var repoItem = new Repo(repoName, repoDescription, repoURL, repoWatchers);
+        console.log(repoItem);
         repoItem.render();
         // Run render method on each new Repo object
       }
@@ -36,7 +45,8 @@ exports.getRepos = function(input) {
 
   }).fail(function(error) {
     console.log(error.responseJSON.message);
-    return false;
+    var error = "error";
+    return error;
   });
   return true;
 };

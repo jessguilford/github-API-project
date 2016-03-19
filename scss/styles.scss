@@ -1,0 +1,77 @@
+// Variables
+$accent-color: tomato;
+$grey: darken(#eee, 10%);
+
+
+// Base
+*:not(body):not(html) {
+  box-sizing: border-box;
+}
+body {
+  font-family: sans-serif;
+}
+ul, li {
+  padding: 0;
+  list-style: none;
+}
+
+// Repo Cards
+#output {
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  align-content: space-between;
+  flex-wrap: wrap;
+  >li {
+    margin: 20px;
+  }
+}
+
+// .repo-item:nth-child(10n+1) {
+//   background-color: brown;
+// }
+
+.repo-item {
+  background-color: $accent-color;
+  min-height: 250px;
+  flex: 1 1 100%;
+  padding: 20px;
+  position: relative;
+  .repo-name {
+    font-size: 1.5em;
+    color: #fff;
+    width: 80%;
+  }
+  .repo-info {
+    font-size: .9em;
+    color: #fff;
+  }
+  .repo-watchers {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    padding-top: 7px;
+    text-align: center;
+    font-size: 15px;
+    line-height: 15px;
+    background-color: #fff;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+  }
+  .repo-url {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background-color: $grey;
+    a {
+      color: #000;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+  }
+}
