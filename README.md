@@ -14,6 +14,8 @@ Clone this repository and open index.html in a browser.
 
 ## Known Bugs
 
+Bower files did not install correctly -- see error-log.txt. As a result, the gh-pages version is not able to access jQuery or Bootstrap.
+
 The error message that is meant to display when the user enters an invalid Github username does not work correctly.
 
 ## Technologies Used
