@@ -17,9 +17,18 @@ ul, li {
   flex-wrap: wrap; }
   #output > li {
     margin: 20px; }
+  #output > li:nth-child(5n+1) {
+    background-color: #512DA8; }
+  #output > li:nth-child(5n+2) {
+    background-color: #00ACC1; }
+  #output > li:nth-child(5n+3) {
+    background-color: #FF9800; }
+  #output > li:nth-child(5n+4) {
+    background-color: #AD1457; }
+  #output > li:nth-child(5n+5) {
+    background-color: #009688; }
 
 .repo-item {
-  background-color: tomato;
   min-height: 250px;
   flex: 1 1 100%;
   padding: 20px;

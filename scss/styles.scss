@@ -1,6 +1,7 @@
 // Variables
 $accent-color: tomato;
 $grey: darken(#eee, 10%);
+$colors: (#512DA8, #00ACC1, #FF9800, #AD1457, #009688);
 
 
 // Base
@@ -26,14 +27,30 @@ ul, li {
   >li {
     margin: 20px;
   }
+  &>li:nth-child(5n+1) {
+    background-color: nth($colors, 1);
+  }
+  &>li:nth-child(5n+2) {
+    background-color: nth($colors, 2);
+  }
+  &>li:nth-child(5n+3) {
+    background-color: nth($colors, 3);
+  }
+  &>li:nth-child(5n+4) {
+    background-color: nth($colors, 4);
+  }
+  &>li:nth-child(5n+5) {
+    background-color: nth($colors, 5);
+  }
 }
 
-// .repo-item:nth-child(10n+1) {
-//   background-color: brown;
+
+// #output>li:nth-child(5n+1) {
+//   background-color: nth($colors, 1);
 // }
 
 .repo-item {
-  background-color: $accent-color;
+  // background-color: $accent-color;
   min-height: 250px;
   flex: 1 1 100%;
   padding: 20px;
