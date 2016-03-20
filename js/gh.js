@@ -33,7 +33,7 @@ exports.getRepos = function(input) {
         // Loop through the response from the API, and convert to new simplified Repo object
         var repoName = repoArray[i][j].name;
         var repoDescription = repoArray[i][j].description;
-        var repoURL = repoArray[i][j].url;
+        var repoURL = repoArray[i][j].html_url;
         var repoWatchers = repoArray[i][j].watchers_count;
         var repoItem = new Repo(repoName, repoDescription, repoURL, repoWatchers);
         repoItem.render();
