@@ -1,39 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link href="css/styles.css" rel="stylesheet" type="text/css" media="all">
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="build/js/app.js"></script>
     <title>Github API Project</title>
   </head>
   <body>
-    <h1>Github Repository Quicksearch</h1>
-    <form id="search">
-      <input id="search-input" type="search" placeholder="Search for Github User">
-      <button id="search-submit">Search</button>
-    </form>
+    <div class="container header">
+      <h1>Github Repository Quicksearch</h1>
+      <h4>Quickly search for a user's repositories. Just enter a Github username to begin</h2>
+      <form id="search">
+        <input id="search-input" type="search" placeholder="Search for Github User">
+        <button id="search-submit">Search</button>
+      </form>
+    </div>
     <div class="container">
       <ul id="output">
-        <li>
-          <ul class="repo-item">
-            <li class="repo-name">Repo Name Repo Name Repo</li>
-            <li class="repo-info">Here's a description of this amazing Repo</li>
-            <li class="repo-url">
-              <a href="https://api.github.com/repos/daneden/Wayfinder-iOS">View on Github</a>
-            </li>
-            <li class="repo-watchers">7</li>
-          </ul>
-        </li>
-        <li>
-          <ul class="repo-item">
-            <li class="repo-name">Repo Name</li>
-            <li class="repo-info">Here's a description of this amazing Repo</li>
-            <li class="repo-url">
-              <a href="https://api.github.com/repos/daneden/Wayfinder-iOS">View on Github</a>
-            </li>
-            <li class="repo-watchers">7</li>
-          </ul>
-        </li>
+        <!-- Repo search results print here -->
       </ul>
       <div class="is-error">Sorry, we couldn't find a github user by that name</div>
     </div>

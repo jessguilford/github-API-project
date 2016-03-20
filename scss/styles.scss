@@ -1,7 +1,7 @@
 // Variables
 $accent-color: tomato;
 $grey: darken(#eee, 10%);
-$colors: (#512DA8, #00ACC1, #FF9800, #AD1457, #009688);
+$colors: (#512DA8, #00ACC1, #c62828, #4A148C, #009688);
 
 
 // Base
@@ -16,7 +16,12 @@ ul, li {
   list-style: none;
 }
 
+.header>* {
+  margin-left: 20px;
+}
+
 // Repo Cards
+
 #output {
   width: 100%;
   display: flex;
@@ -26,6 +31,10 @@ ul, li {
   flex-wrap: wrap;
   >li {
     margin: 20px;
+    transition: all .3s ease-in-out;
+  }
+  >li:hover {
+    transform: scale(1.05);
   }
   &>li:nth-child(5n+1) {
     background-color: nth($colors, 1);
@@ -44,25 +53,23 @@ ul, li {
   }
 }
 
-
-// #output>li:nth-child(5n+1) {
-//   background-color: nth($colors, 1);
-// }
-
 .repo-item {
-  // background-color: $accent-color;
   min-height: 250px;
   flex: 1 1 100%;
   padding: 20px;
   position: relative;
   .repo-name {
-    font-size: 1.5em;
+    font-size: 1.4em;
     color: #fff;
     width: 80%;
+    word-wrap: break-word;
+    text-transform: capitalize;
+    font-weight: bold;
   }
   .repo-info {
     font-size: .9em;
     color: #fff;
+    text-transform: capitalize;
   }
   .repo-watchers {
     width: 30px;

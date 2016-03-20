@@ -21,7 +21,6 @@ Repo.prototype.render = function () {
   }
 
   output.insertAdjacentHTML('afterbegin', '<li><ul class="repo-item">' + '<li class="repo-name">' + renderName + '</li>' + '<li class="repo-info">' + renderDesc + '</li>' + '<li class="repo-url">' + renderUrl + '</li>' + '<li class="repo-watchers">' + renderWatchers + '</li>' + '</ul></li>');
-  console.log(renderUrl);
 };
 
 exports.getRepos = function(input) {
@@ -37,7 +36,6 @@ exports.getRepos = function(input) {
         var repoURL = repoArray[i][j].url;
         var repoWatchers = repoArray[i][j].watchers_count;
         var repoItem = new Repo(repoName, repoDescription, repoURL, repoWatchers);
-        console.log(repoItem);
         repoItem.render();
         // Run render method on each new Repo object
       }
@@ -45,8 +43,7 @@ exports.getRepos = function(input) {
 
   }).fail(function(error) {
     console.log(error.responseJSON.message);
-    var error = "error";
-    return error;
+    return false;
   });
   return true;
 };

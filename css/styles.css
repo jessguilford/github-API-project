@@ -8,6 +8,9 @@ ul, li {
   padding: 0;
   list-style: none; }
 
+.header > * {
+  margin-left: 20px; }
+
 #output {
   width: 100%;
   display: flex;
@@ -16,15 +19,18 @@ ul, li {
   align-content: space-between;
   flex-wrap: wrap; }
   #output > li {
-    margin: 20px; }
+    margin: 20px;
+    transition: all .3s ease-in-out; }
+  #output > li:hover {
+    transform: scale(1.05); }
   #output > li:nth-child(5n+1) {
     background-color: #512DA8; }
   #output > li:nth-child(5n+2) {
     background-color: #00ACC1; }
   #output > li:nth-child(5n+3) {
-    background-color: #FF9800; }
+    background-color: #c62828; }
   #output > li:nth-child(5n+4) {
-    background-color: #AD1457; }
+    background-color: #4A148C; }
   #output > li:nth-child(5n+5) {
     background-color: #009688; }
 
@@ -34,12 +40,16 @@ ul, li {
   padding: 20px;
   position: relative; }
   .repo-item .repo-name {
-    font-size: 1.5em;
+    font-size: 1.4em;
     color: #fff;
-    width: 80%; }
+    width: 80%;
+    word-wrap: break-word;
+    text-transform: capitalize;
+    font-weight: bold; }
   .repo-item .repo-info {
     font-size: .9em;
-    color: #fff; }
+    color: #fff;
+    text-transform: capitalize; }
   .repo-item .repo-watchers {
     width: 30px;
     height: 30px;

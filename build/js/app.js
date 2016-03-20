@@ -16,7 +16,7 @@ function Repo(name, description, url, watchers) {
 Repo.prototype.render = function () {
   var output = document.getElementById('output');
   var renderName = this.name;
-  var renderUrl = '<a href="' + this.url + '"> View </a>';
+  var renderUrl = '<a href="' + this.url + '"> View on Github </a>';
   var renderWatchers = (this.watchers).toString();
   if (this.description === "") {
     var renderDesc = "Description not available";
@@ -25,7 +25,6 @@ Repo.prototype.render = function () {
   }
 
   output.insertAdjacentHTML('afterbegin', '<li><ul class="repo-item">' + '<li class="repo-name">' + renderName + '</li>' + '<li class="repo-info">' + renderDesc + '</li>' + '<li class="repo-url">' + renderUrl + '</li>' + '<li class="repo-watchers">' + renderWatchers + '</li>' + '</ul></li>');
-  console.log(renderUrl);
 };
 
 exports.getRepos = function(input) {
@@ -41,7 +40,6 @@ exports.getRepos = function(input) {
         var repoURL = repoArray[i][j].url;
         var repoWatchers = repoArray[i][j].watchers_count;
         var repoItem = new Repo(repoName, repoDescription, repoURL, repoWatchers);
-        console.log(repoItem);
         repoItem.render();
         // Run render method on each new Repo object
       }
@@ -49,8 +47,7 @@ exports.getRepos = function(input) {
 
   }).fail(function(error) {
     console.log(error.responseJSON.message);
-    var error = "error";
-    return error;
+    return false;
   });
   return true;
 };
@@ -60,7 +57,6 @@ var getRepos = require("./../js/gh.js").getRepos;
 var userArray = require("./../js/gh.js").userArray;
 
 $(document).ready(function() {
-  console.log("basic setup is working");
   $(".is-error").hide();
   $("#search").submit(function(event) {
     event.preventDefault();
@@ -68,10 +64,10 @@ $(document).ready(function() {
     var input = $("#search-input").val();
     getRepos(input);
 
-    if(!(getRepos(input) === "error")) {
-      // This seems to always trigger as being true
+    if(getRepos(input) === false) {
+      $(".is-error").fadeToggle();
+      // Q: This will trigger if I test for ===true, but not ===false.
     }
-    console.log(input);
   });
 });
 

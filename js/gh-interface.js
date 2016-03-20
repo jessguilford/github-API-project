@@ -2,7 +2,6 @@ var getRepos = require("./../js/gh.js").getRepos;
 var userArray = require("./../js/gh.js").userArray;
 
 $(document).ready(function() {
-  console.log("basic setup is working");
   $(".is-error").hide();
   $("#search").submit(function(event) {
     event.preventDefault();
@@ -10,9 +9,9 @@ $(document).ready(function() {
     var input = $("#search-input").val();
     getRepos(input);
 
-    if(!(getRepos(input) === "error")) {
-      // This seems to always trigger as being true
+    if(getRepos(input) === false) {
+      $(".is-error").fadeToggle();
+      // Q: This will trigger if I test for ===true, but not ===false.
     }
-    console.log(input);
   });
 });
